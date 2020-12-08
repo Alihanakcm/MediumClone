@@ -7,8 +7,8 @@ require("dotenv").config({ path: "../.env" })
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.use(routes.post)
 app.use(routes.user)
+app.use(routes.post)
 
 
 app.listen(process.env.PORT, () => {

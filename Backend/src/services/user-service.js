@@ -1,4 +1,6 @@
 const db = require("../database/index");
+const tokenOperations = require("./token-operations/index");
+require("dotenv").config({ path: "../../../.env" })
 
 userService = {
     getUser(id) {
@@ -33,10 +35,11 @@ userService = {
             FROM users 
             WHERE username="${user.username}" and password="${user.password}"`, (err, result, fields) => {
                 if (err) throw err;
-                console.log(result);
                 const error = false;
-                if (!error && result.length > 0)
-                    resolve(200);
+                if (!error && result.length > 0) {
+                    const token = tokenOperations.generateToken(user);
+                    resolve({ token: token });
+                }
                 else if (!error && result.length < 1)
                     resolve(401);
                 else
