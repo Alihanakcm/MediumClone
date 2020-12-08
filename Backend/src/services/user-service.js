@@ -36,9 +36,9 @@ userService = {
                 console.log(result);
                 const error = false;
                 if (!error && result.length > 0)
-                    resolve(true);
+                    resolve(200);
                 else if (!error && result.length < 1)
-                    resolve(false);
+                    resolve(401);
                 else
                     reject(error);
             });
