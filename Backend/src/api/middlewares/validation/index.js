@@ -1,3 +1,3 @@
 module.exports = validation = {
-    validate: require("./validator")
+    userValidator: require("./validator")
 }

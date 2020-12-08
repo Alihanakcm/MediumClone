@@ -26,6 +26,23 @@ userService = {
                     reject(error);
             });
         });
+    },
+    login(user) {
+        return new Promise((resolve, reject) => {
+            db.connection.query(`SELECT username,password 
+            FROM users 
+            WHERE username="${user.username}" and password="${user.password}"`, (err, result, fields) => {
+                if (err) throw err;
+                console.log(result);
+                const error = false;
+                if (!error && result.length > 0)
+                    resolve(true);
+                else if (!error && result.length < 1)
+                    resolve(false);
+                else
+                    reject(error);
+            });
+        })
     }
 }
 
