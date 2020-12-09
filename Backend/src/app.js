@@ -7,9 +7,11 @@ require("dotenv").config({ path: "../.env" })
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.use(routes.user)
-app.use(routes.post)
 
+app.use(routes.user);
+app.use(routes.post);
+app.use(routes.like);
+app.use(routes.comment);
 
 app.listen(process.env.PORT, () => {
     console.log("live on : " + process.env.PORT);

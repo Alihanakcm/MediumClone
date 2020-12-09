@@ -9,8 +9,10 @@ module.exports = (req, res, next) => {
     else {
         jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
             if (err) res.send(403);
-            req.user = user;
-            next();
+            else {
+                req.user = user;
+                next();
+            }
         });
     }
 
