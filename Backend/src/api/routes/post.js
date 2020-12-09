@@ -9,7 +9,7 @@ app.get("/posts", authToken.authenticateToken, (request, response) => {
 });
 
 app.post("/new-post", authToken.authenticateToken, (request, response) => {
-    services.postService.createPost(request.body).then(res => response.send(res)).catch(err => console.log(err));
+    services.postService.createPost(request.query.userId,request.body).then(res => response.send(res)).catch(err => console.log(err));
 });
 
 module.exports = app;

@@ -5,13 +5,11 @@ require("dotenv").config({ path: "../../../.env" })
 userService = {
     getUser(id) {
         return new Promise((resolve, reject) => {
-            db.connection.query("SELECT*FROM users WHERE id=" + id, (err, result, fields) => {
-                if (err) throw err;
-                const error = false;
+            db.connection.query("SELECT*FROM users WHERE id=" + id, (error, result, fields) => {
                 if (!error)
                     resolve(result);
                 else
-                    reject(error);
+                    reject(error.sqlMessage);
             });
         });
     },
@@ -19,13 +17,15 @@ userService = {
         return new Promise((resolve, reject) => {
             db.connection.query(`INSERT INTO users (username,email,full_name,password) 
             VALUES 
-            ( "${user.username}","${user.email}", "${user.full_name}", "${user.password}")`, (err, result, fields) => {
-                if (err) throw err;
-                const error = false;
+            ( "${user.username}","${user.email}", "${user.full_name}", "${user.password}")`, (error, result, fields) => {
                 if (!error)
                     resolve(200);
-                else
-                    reject(error);
+                else if (err.code == 'ER_DUP_ENTRY') {
+                    resolve(err.sqlMessage.split(' ')[5].split('.')[1].replace("'", "") + " is exist");
+                }
+                else {
+                    reject(error.sqlMessage);
+                }
             });
         });
     },
@@ -33,9 +33,8 @@ userService = {
         return new Promise((resolve, reject) => {
             db.connection.query(`SELECT username,password 
             FROM users 
-            WHERE username="${user.username}" and password="${user.password}"`, (err, result, fields) => {
-                if (err) throw err;
-                const error = false;
+            WHERE username="${user.username}" and password="${user.password}"`, (error, result, fields) => {
+
                 if (!error && result.length > 0) {
                     const token = tokenOperations.generateToken(user);
                     resolve({ token: token });
@@ -43,7 +42,7 @@ userService = {
                 else if (!error && result.length < 1)
                     resolve(401);
                 else
-                    reject(error);
+                    reject(error.sqlMessage);
             });
         })
     }
