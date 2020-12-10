@@ -1,8 +1,8 @@
 var validator = require("validator");
 
-module.exports = (request, response, next) => {
-    if (validator.isEmail(request.body.email))
+module.exports = (req, res, next) => {
+    if (validator.isEmail(req.body.email))
         next();
     else
-        response.send("email is not valid")
+        res.send("email is not valid")
 }

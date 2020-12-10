@@ -20,8 +20,8 @@ userService = {
             ( "${user.username}","${user.email}", "${user.full_name}", "${user.password}")`, (error, result, fields) => {
                 if (!error)
                     resolve(200);
-                else if (err.code == 'ER_DUP_ENTRY') {
-                    resolve(err.sqlMessage.split(' ')[5].split('.')[1].replace("'", "") + " is exist");
+                else if (error.code == 'ER_DUP_ENTRY') {
+                    resolve(error.sqlMessage.split(' ')[5].split('.')[1].replace("'", "") + " is exist");
                 }
                 else {
                     reject(error.sqlMessage);
