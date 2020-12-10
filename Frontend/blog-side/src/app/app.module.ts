@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
-import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { ContentComponent } from './components/content/content.component';
 
 @NgModule({
@@ -13,7 +12,6 @@ import { ContentComponent } from './components/content/content.component';
     AppComponent,
     NavigationComponent,
     HomePageComponent,
-    AuthenticationComponent,
     ContentComponent
   ],
   imports: [
