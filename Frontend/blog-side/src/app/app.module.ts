@@ -7,7 +7,6 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { ContentComponent } from './components/content/content.component';
-import { LoginRegisterComponent } from './components/navigation/login-register/login-register.component';
 
 @NgModule({
   declarations: [
@@ -15,8 +14,7 @@ import { LoginRegisterComponent } from './components/navigation/login-register/l
     NavigationComponent,
     HomePageComponent,
     AuthenticationComponent,
-    ContentComponent,
-    LoginRegisterComponent
+    ContentComponent
   ],
   imports: [
     BrowserModule,
