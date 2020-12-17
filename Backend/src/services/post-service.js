@@ -11,6 +11,16 @@ postService = {
             });
         });
     },
+    getPost(postId) {
+        return new Promise((resolve, reject) => {
+            db.connection.query(`SELECT*FROM posts WHERE id=${postId}`, (error, result, fields) => {
+                if (!error)
+                    resolve(result);
+                else
+                    reject(error.sqlMessage);
+            });
+        });
+    },
     createPost(userId, post) {
         return new Promise((resolve, reject) => {
             db.connection.query(`INSERT INTO posts (content,title,user_id,like_count,comment_count)
