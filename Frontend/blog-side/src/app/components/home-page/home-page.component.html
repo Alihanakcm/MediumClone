@@ -1,1 +1,18 @@
-<p>home-page works!</p>
+<div class="blog">
+    <div class="container">
+        <ul *ngFor="let data of allPosts">
+            <div class="blog-image">
+                <a routerLink="/post/{{data.id}}"><img src="assets/blog.jpeg" height=200px width=200px></a>
+            </div>
+            <a routerLink="/post/{{data.id}}">
+                <h3>{{data.title}}</h3>
+            </a>
+            <p>Author: {{data.userId}}</p>
+            <div class="blog-content">
+                <p>{{data.content}}</p>
+                <a class="btn btn-success" routerLink="/post/{{data.id}}">Read
+                    more...</a>
+            </div>
+        </ul>
+    </div>
+</div>
