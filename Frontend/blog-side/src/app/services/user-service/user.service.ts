@@ -5,24 +5,53 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { User } from 'src/app/entities/user';
 import { UserLogin } from 'src/app/entities/userLogin';
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable()
 export class UserService {
 
   constructor(private http: HttpClient) {
   }
+  userToken: any;
+  decodedToken: any;
+  jwtHelper: JwtHelperService = new JwtHelperService();
+  TOKEN_KEY = "token";
   register(user: User): Observable<Response> {
     return this.http.post<Response>(environment.url + "/register", user).pipe(catchError(this.handleError));
   }
+
   login(userLogin: UserLogin): Observable<Response> {
-    console.log(userLogin);
-    
-    return this.http.post<Response>(environment.url + "/login", userLogin)
-      .pipe(catchError(this.handleError));
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    return this.http.post<Response>(environment.url + "/login", userLogin, httpOptions).pipe(catchError(this.handleError))
   }
+
+  logOut() {
+    localStorage.removeItem(this.TOKEN_KEY);
+  }
+
+  loggedIn() {
+    return this.jwtHelper.isTokenExpired(this.token);
+  }
+
+  saveToken(token) {
+    localStorage.setItem(this.TOKEN_KEY, token)
+  }
+  get token() {
+    return localStorage.getItem(this.TOKEN_KEY);
+  }
+
+  getCurrentUserId() {
+    this.jwtHelper.decodeToken(this.token).userId;
+  }
+
   getUser(id) {
 
   }
+
   handleError(err: HttpErrorResponse) {
     let errorMessage = '';
     if (err.error instanceof ErrorEvent) {
