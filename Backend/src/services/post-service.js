@@ -3,7 +3,7 @@ const db = require("../database/index");
 postService = {
     getPosts() {
         return new Promise((resolve, reject) => {
-            db.connection.query("SELECT*FROM posts", (error, result, fields) => {
+            db.connection.query("SELECT p.id,p.title,p.content,p.likeCount,p.commentCount,p.postDate,u.fullName FROM posts p INNER JOIN users u ON p.userId=u.id", (error, result, fields) => {
                 if (!error)
                     resolve(result);
                 else
@@ -13,7 +13,7 @@ postService = {
     },
     getPost(postId) {
         return new Promise((resolve, reject) => {
-            db.connection.query(`SELECT*FROM posts WHERE id=${postId}`, (error, result, fields) => {
+            db.connection.query(`SELECT p.id,p.title,p.content,p.likeCount,p.commentCount,p.postDate,u.fullName,u.id as "userId" FROM posts p INNER JOIN users u ON p.userId=u.id WHERE p.id=${postId}`, (error, result, fields) => {
                 if (!error)
                     resolve(result);
                 else

@@ -4,5 +4,5 @@ module.exports = (req, res, next) => {
     if (validator.isEmail(req.body.email))
         next();
     else
-        res.send("email is not valid")
+        res.send({res:"email is not valid"});
 }
