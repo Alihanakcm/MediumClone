@@ -8,7 +8,7 @@ app.get("/posts", (request, response) => {
     services.postService.getPosts().then(data => response.send(data)).catch(err => console.log(err));
 });
 
-app.get("/post/:id", (request, response) => {
+app.get("/post/:id", authToken.authenticateToken, (request, response) => {
     services.postService.getPost(request.params.id).then(data => response.send(data)).catch(err => console.log(err));
 });
 

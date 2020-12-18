@@ -8,14 +8,16 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { ContentComponent } from './components/content/content.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms'
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { LoginRegisterComponent } from './components/login-register/login-register.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     HomePageComponent,
-    ContentComponent
+    ContentComponent,
+    LoginRegisterComponent
   ],
   imports: [
     BrowserModule,
