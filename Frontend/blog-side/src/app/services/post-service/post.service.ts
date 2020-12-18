@@ -8,20 +8,20 @@ import { Post } from '../../entities/post';
 export class PostService {
 
   constructor(private http: HttpClient) { }
+  TOKEN_KEY = "token";
 
   getPosts(): Observable<Post[]> {
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Content-Type': 'application/json',
-    //     'Authorization': "Bearer eyJhbGciOaiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsaWhhbmFrY20iLCJpYXQiOjE2MDc2MTYyMDMsImV4cCI6MTYwNzYxODAwM30._T2qURo5davZzadkk1nFVvIwgpkcsr3-7dEX_FS9qx4"
-    //   })
-    // };
     return this.http.get<Post[]>(environment.url + "/posts").pipe(
-      tap(result => console.log(result)),
       catchError(this.handleError));
   }
   getsinglePost(postId): Observable<Post> {
-    return this.http.get<Post>(environment.url + "/post/" + postId).pipe(catchError(this.handleError));
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'authorization': 'Bearer ' + localStorage.getItem(this.TOKEN_KEY)
+      })
+    };
+    return this.http.get<Post>(environment.url + "/post/" + postId, httpOptions).pipe(catchError(this.handleError));
   }
   newPost(userId, title, content) {
     // this.http.post(environment.url)
