@@ -7,9 +7,10 @@
             <a routerLink="/post/{{data.id}}">
                 <h3>{{data.title}}</h3>
             </a>
-            <p>Author: {{data.userId}}</p>
+            <p>Author: {{data.fullName}}</p>
+            <p>Release Date: {{data.postDate.toString().substring(0,10)}}</p>
             <div class="blog-content">
-                <p>{{data.content}}</p>
+                <p>{{data.content.substring(0,500)}}...</p>
                 <a class="btn btn-success" (click)="readMore(data.id)">Read
                     more...</a>
             </div>

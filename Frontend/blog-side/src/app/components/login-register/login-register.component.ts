@@ -17,7 +17,8 @@ export class LoginRegisterComponent implements OnInit {
 
   constructor(private userService: UserService, private formBuilder: FormBuilder, private router: Router) { }
 
-  error: string;
+  registerError: string;
+  loginError:string;
   success: string;
   registerForm: FormGroup;
   loginForm: FormGroup;
@@ -50,7 +51,7 @@ export class LoginRegisterComponent implements OnInit {
       this.user = Object.assign({}, this.registerForm.value);
       this.userService.register(this.user).subscribe(res => {
         if (res["res"] != 200)
-          this.error = res["res"];
+          this.registerError = res["res"];
         else
           this.success = "Kaydınız başarıyla yapılmıştır";
       });
@@ -60,6 +61,8 @@ export class LoginRegisterComponent implements OnInit {
     if (this.loginForm.valid) {
       this.userLogin = Object.assign({}, this.loginForm.value);
       this.userService.login(this.userLogin).subscribe(res => {
+        console.log(res["res"]);
+        
         if (res["res"]["token"] != undefined) {
           this.userService.saveToken(res["res"]["token"]);
           this.userService.userToken = res["res"]["token"];
@@ -67,9 +70,9 @@ export class LoginRegisterComponent implements OnInit {
           this.router.navigateByUrl('/home');
         }
         else if (res["res"] == 401)
-          this.error = "Kullanıcı adı ya da şifreniz hatalı! Lütfen bilgilerinizi kontrol ediniz.";
+          this.loginError = "Kullanıcı adı ya da şifreniz hatalı! Lütfen bilgilerinizi kontrol ediniz.";
         else
-          this.error = "Bir hata oluştu! Daha sonra tekrar deneyiniz.";
+          this.loginError = "Bir hata oluştu! Daha sonra tekrar deneyiniz.";
       });
     }
   }
