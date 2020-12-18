@@ -14,12 +14,15 @@
         <div class="tab-content container col-10 mt-3 mb-3 p-2" id="myTabContent">
 
             <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                <div *ngIf="error" class="alert alert-danger">
+                    {{error}}
+                </div>
                 <form [formGroup]="loginForm" (ngSubmit)="loginOperation()">
                     <div class="form-group">
-                        <label for="email">Email address</label>
-                        <input type="email" class="form-control" id="email" name="email" formControlName="email"
-                            aria-describedby="emailHelp" placeholder="Enter your email address..">
-                        <div *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').dirty"
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" formControlName="username"
+                            aria-describedby="username" placeholder="Enter your username..">
+                        <div *ngIf="loginForm.get('username').hasError('required') && loginForm.get('username').dirty"
                             class="alert alert-danger">
                             Email zorunludur
                         </div>

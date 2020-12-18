@@ -14,13 +14,13 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Full Name
+                        {{username}}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item">Profile</a>
-                        <a class="dropdown-item">Add Post</a>
+                        <a type="button" class="dropdown-item">Profile</a>
+                        <a type="button" class="dropdown-item">Add Post</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" (click)="logOut()">Logout</a>
+                        <a type="button" class="dropdown-item" (click)="logOut()">Logout</a>
                     </div>
                 </li>
             </ul>

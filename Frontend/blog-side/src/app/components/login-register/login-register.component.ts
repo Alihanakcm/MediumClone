@@ -37,7 +37,7 @@ export class LoginRegisterComponent implements OnInit {
 
   createLoginForm() {
     this.loginForm = this.formBuilder.group({
-      email: ["", Validators.required],
+      username: ["", Validators.required],
       password: ["", Validators.required]
     });
   }
@@ -60,10 +60,16 @@ export class LoginRegisterComponent implements OnInit {
     if (this.loginForm.valid) {
       this.userLogin = Object.assign({}, this.loginForm.value);
       this.userService.login(this.userLogin).subscribe(res => {
-        this.userService.saveToken(res["res"]["token"]);
-        this.userService.userToken = res["res"]["token"];
-        this.userService.decodedToken = this.jwtHelper.decodeToken(res["res"]["token"]);
-        this.router.navigateByUrl('/home');
+        if (res["res"]["token"] != undefined) {
+          this.userService.saveToken(res["res"]["token"]);
+          this.userService.userToken = res["res"]["token"];
+          this.userService.decodedToken = this.jwtHelper.decodeToken(res["res"]["token"]);
+          this.router.navigateByUrl('/home');
+        }
+        else if (res["res"] == 401)
+          this.error = "Kullanıcı adı ya da şifreniz hatalı! Lütfen bilgilerinizi kontrol ediniz.";
+        else
+          this.error = "Bir hata oluştu! Daha sonra tekrar deneyiniz.";
       });
     }
   }

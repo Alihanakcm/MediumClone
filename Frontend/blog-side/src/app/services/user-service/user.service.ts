@@ -44,8 +44,8 @@ export class UserService {
     return localStorage.getItem(this.TOKEN_KEY);
   }
 
-  getCurrentUserId() {
-    this.jwtHelper.decodeToken(this.token).userId;
+  getCurrentUser() {
+    return this.jwtHelper.decodeToken(this.token).user.username;
   }
 
   getUser(id) {

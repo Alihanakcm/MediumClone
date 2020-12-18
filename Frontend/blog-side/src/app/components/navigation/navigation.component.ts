@@ -11,11 +11,13 @@ import { UserService } from 'src/app/services/user-service/user.service';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor(private userService: UserService,private router:Router) { }
-
+  constructor(private userService: UserService, private router: Router) { }
   ngOnInit(): void {
   }
 
+  get username() {
+    return this.userService.getCurrentUser();
+  }
   get isAuthenticated() {
     return this.userService.loggedIn();
   }
