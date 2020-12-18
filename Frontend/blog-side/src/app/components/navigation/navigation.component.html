@@ -43,26 +43,38 @@
                 </li>
             </ul>
             <div class="tab-content container col-10 mt-3 mb-3 p-2" id="myTabContent">
+
                 <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
-                    <form>
+                    <form [formGroup]="loginForm" (ngSubmit)="asd()">
                         <div class="form-group">
-                            <label for="loginEmail">Email address</label>
-                            <input type="email" class="form-control" id="loginEmail" name="loginEmail"
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email" formControlName="email"
                                 aria-describedby="emailHelp" placeholder="Enter your email address..">
+                            <div *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').dirty"
+                                class="alert alert-danger">
+                                Email zorunludur
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="loginPassword">Password</label>
-                            <input type="password" class="form-control" id="loginPassword"
+                            <label for="password">Password</label>
+                            <input type=" password" class="form-control" id="password" formControlName="password"
                                 placeholder="Enter your password..">
+                            <div *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').dirty"
+                                class="alert alert-danger">
+                                Şifre zorunludur
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Login</button>
                     </form>
                 </div>
                 <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                    <div *ngIf="error" class="alert alert-danger">
+                        {{error}}
+                    </div>
+                    <div *ngIf="success" class="alert alert-success">
+                        {{success}}
+                    </div>
                     <form [formGroup]="registerForm" (ngSubmit)="register()">
-                        <div *ngIf="error" class="alert alert-danger">
-                            {{error}}
-                        </div>
                         <div class="form-group">
                             <label for="fullName">Full Name</label>
                             <input type="text" class="form-control" id="fullName" name="fullName"

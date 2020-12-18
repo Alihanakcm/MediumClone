@@ -14,11 +14,11 @@ export class UserService {
   register(user: User): Observable<Response> {
     return this.http.post<Response>(environment.url + "/register", user).pipe(catchError(this.handleError));
   }
-  login(userLogin: UserLogin) {
-
-    return this.http.post<UserLogin>(environment.url + "/login", { username: "alihanakcm", password: "123" })
-      .pipe(catchError(this.handleError))
-      .subscribe(res => console.log(res));
+  login(userLogin: UserLogin): Observable<Response> {
+    console.log(userLogin);
+    
+    return this.http.post<Response>(environment.url + "/login", userLogin)
+      .pipe(catchError(this.handleError));
   }
   getUser(id) {
 
@@ -28,7 +28,7 @@ export class UserService {
     if (err.error instanceof ErrorEvent) {
       errorMessage = 'Something went wrong' + err.message + " status" + err.status + " status text" + err.statusText;
     } else {
-      errorMessage = 'System-something went wrong ' + err.message + " status" + err.status + " status text" + err.statusText+" err.text"+err.error.text;
+      errorMessage = 'System-something went wrong ' + err.message + " status" + err.status + " status text" + err.statusText + " err.text" + err.error.text;
     }
     return throwError(errorMessage);
   }
