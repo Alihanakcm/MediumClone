@@ -10,7 +10,7 @@
             <p>Author: {{data.userId}}</p>
             <div class="blog-content">
                 <p>{{data.content}}</p>
-                <a class="btn btn-success" routerLink="/post/{{data.id}}">Read
+                <a class="btn btn-success" (click)="readMore(data.id)">Read
                     more...</a>
             </div>
         </ul>
