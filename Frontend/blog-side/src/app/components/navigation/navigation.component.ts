@@ -16,7 +16,7 @@ export class NavigationComponent implements OnInit {
   }
 
   get username() {
-    return this.userService.getCurrentUser();
+    return this.userService.getUserName();
   }
   get isAuthenticated() {
     return this.userService.loggedIn();

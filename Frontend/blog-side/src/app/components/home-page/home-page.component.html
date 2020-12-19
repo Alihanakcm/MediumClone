@@ -10,7 +10,8 @@
             <p>Author: {{data.fullName}}</p>
             <p>Release Date: {{data.postDate.toString().substring(0,10)}}</p>
             <div class="blog-content">
-                <p>{{data.content.substring(0,500)}}...</p>
+                <p [innerHTML]="data.content.substring(0,500)"></p>
+                <pre>...</pre>
                 <a class="btn btn-success" (click)="readMore(data.id)">Read
                     more...</a>
             </div>

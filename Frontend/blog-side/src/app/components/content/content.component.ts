@@ -18,14 +18,12 @@ export class ContentComponent implements OnInit {
   singlePost: Post;
   commentForm: FormGroup;
   comment = new Comment();
-  success:string;
+  success: string;
   ngOnInit(): void {
     this.createCommentForm();
     this.activatedRoute.params.subscribe(params => {
       this.postService.getsinglePost(params["postId"]).subscribe(data => {
         this.singlePost = data;
-        console.log(this.singlePost[0].id)
-
       });
     });
   }
@@ -45,4 +43,5 @@ export class ContentComponent implements OnInit {
       });
     }
   }
+
 }

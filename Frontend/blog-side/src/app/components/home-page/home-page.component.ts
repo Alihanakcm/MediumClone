@@ -22,8 +22,6 @@ export class HomePageComponent implements OnInit {
     return this.userService.loggedIn();
   }
   readMore(id: number) {
-    console.log("isLog" + this.isAuthenticated);
-
     if (!this.isAuthenticated)
       this.router.navigateByUrl('/post/' + id);
     else

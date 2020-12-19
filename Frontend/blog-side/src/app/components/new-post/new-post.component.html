@@ -1,14 +1,19 @@
 <div class="container">
-    <form class="p-3">
+    <div *ngIf="success" class="alert alert-success">
+        {{success}}
+    </div>
+    <div *ngIf="error" class="alert alert-danger">
+        {{error}}
+    </div>
+    <form [formGroup]="postForm" (ngSubmit)="addPost()" class="p-3">
         <div class="form-group mb-3">
-            <input type="text" class="form-control" id="postTitle" placeholder="Enter post's header here... ">
+            <input type="text" class="form-control" id="title" placeholder="Enter post's header here... "
+                formControlName="title">
         </div>
-
         <!-- class'ı ckeditor olmak zorunda Id'si değiştirilebilir. -->
-<ckeditor>
-    <textarea class="ckeditor" id="postContent"></textarea>
-
-</ckeditor>
-        <button type="button" class="btn btn-primary mt-3" onclick="addPost()">Add Post</button>
+        <ckeditor formControlName="content">
+            <textarea class="ckeditor" id="content" ></textarea>
+        </ckeditor>
+        <button type="submit" [disabled]="postForm.invalid" class="btn btn-primary mt-3">Add Post</button>
     </form>
 </div>

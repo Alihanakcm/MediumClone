@@ -12,6 +12,7 @@ export class UserService {
 
   constructor(private http: HttpClient) {
   }
+  userId: number;
   userToken: any;
   decodedToken: any;
   jwtHelper: JwtHelperService = new JwtHelperService();
@@ -44,12 +45,18 @@ export class UserService {
     return localStorage.getItem(this.TOKEN_KEY);
   }
 
-  getCurrentUser() {
+  getUserName() {
     return this.jwtHelper.decodeToken(this.token).user.username;
   }
-
-  getUser(id) {
-
+  getCurrentUser(): Observable<User> {
+    const username = this.getUserName();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'authorization': 'Bearer ' + localStorage.getItem(this.TOKEN_KEY)
+      })
+    };
+    return this.http.get<User>(environment.url + "/user/" + username, httpOptions).pipe(catchError(this.handleError));
   }
 
   handleError(err: HttpErrorResponse) {
