@@ -24,7 +24,7 @@ postService = {
     createPost(userId, post) {
         return new Promise((resolve, reject) => {
             db.connection.query(`INSERT INTO posts (content,title,user_id,like_count,comment_count)
-             VALUES ("${post.content}","${post.title}",${userId},0,0)`, (error, result, fields) => {
+             VALUES ("${post.content}","${post.title}",${post.userId},0,0)`, (error, result, fields) => {
                 if (!error)
                     resolve(200);
                 else
