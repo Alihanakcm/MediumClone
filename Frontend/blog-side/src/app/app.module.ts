@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { NewPostComponent } from './components/new-post/new-post.component'
 import { CKEditorModule } from 'ckeditor4-angular';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CKEditorModule } from 'ckeditor4-angular';
     HomePageComponent,
     ContentComponent,
     LoginRegisterComponent,
-    NewPostComponent
+    NewPostComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
