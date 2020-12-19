@@ -21,9 +21,9 @@ postService = {
             });
         });
     },
-    createPost(userId, post) {
+    createPost( post) {
         return new Promise((resolve, reject) => {
-            db.connection.query(`INSERT INTO posts (content,title,user_id,like_count,comment_count)
+            db.connection.query(`INSERT INTO posts (content,title,userId,likeCount,commentCount)
              VALUES ("${post.content}","${post.title}",${post.userId},0,0)`, (error, result, fields) => {
                 if (!error)
                     resolve(200);

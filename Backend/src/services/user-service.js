@@ -3,9 +3,9 @@ const tokenOperations = require("./token-operations/index");
 require("dotenv").config({ path: "../../../.env" })
 
 userService = {
-    getUser(id) {
+    getUser(username) {
         return new Promise((resolve, reject) => {
-            db.connection.query("SELECT*FROM users WHERE id=" + id, (error, result, fields) => {
+            db.connection.query(`SELECT*FROM users WHERE username="${username}"`, (error, result, fields) => {
                 if (!error)
                     resolve(result);
                 else
