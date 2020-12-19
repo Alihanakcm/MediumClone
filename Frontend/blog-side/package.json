@@ -21,6 +21,7 @@
     "@angular/router": "~10.0.14",
     "@auth0/angular-jwt": "^5.0.2",
     "bootstrap": "^4.5.3",
+    "ckeditor4-angular": "^2.0.1",
     "jquery": "^3.5.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",

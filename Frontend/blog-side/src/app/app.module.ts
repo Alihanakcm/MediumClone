@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { ContentComponent } from './components/content/content.component';
+import { LoginRegisterComponent } from './components/login-register/login-register.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
-import { LoginRegisterComponent } from './components/login-register/login-register.component'
+import { NewPostComponent } from './components/new-post/new-post.component'
+import { CKEditorModule } from 'ckeditor4-angular';
 
 @NgModule({
   declarations: [
@@ -17,14 +19,16 @@ import { LoginRegisterComponent } from './components/login-register/login-regist
     NavigationComponent,
     HomePageComponent,
     ContentComponent,
-    LoginRegisterComponent
+    LoginRegisterComponent,
+    NewPostComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CKEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
