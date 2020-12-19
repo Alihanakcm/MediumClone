@@ -23,8 +23,14 @@ export class PostService {
     };
     return this.http.get<Post>(environment.url + "/post/" + postId, httpOptions).pipe(catchError(this.handleError));
   }
-  newPost(userId, title, content) {
-    // this.http.post(environment.url)
+  newPost(post): Observable<Response> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'authorization': 'Bearer ' + localStorage.getItem(this.TOKEN_KEY)
+      })
+    };
+    return this.http.post<Response>(environment.url + "/new-post", post, httpOptions).pipe(catchError(this.handleError));
   }
   handleError(err: HttpErrorResponse) {
     let errorMessage = '';
