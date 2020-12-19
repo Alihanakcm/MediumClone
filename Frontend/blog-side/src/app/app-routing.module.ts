@@ -3,12 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { ContentComponent } from './components/content/content.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginRegisterComponent } from './components/login-register/login-register.component';
+import { NewPostComponent } from './components/new-post/new-post.component'
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomePageComponent },
   { path: 'post/:postId', component: ContentComponent },
   { path: 'login-register', component: LoginRegisterComponent },
+  { path: 'new-post', component: NewPostComponent }
 ];
 
 @NgModule({
