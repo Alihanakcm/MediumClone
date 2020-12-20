@@ -13,6 +13,7 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { NewPostComponent } from './components/new-post/new-post.component'
 import { CKEditorModule } from 'ckeditor4-angular';
 import { ProfileComponent } from './components/profile/profile.component';
+import { UserService } from './services/user-service/user.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     ReactiveFormsModule,
     CKEditorModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
