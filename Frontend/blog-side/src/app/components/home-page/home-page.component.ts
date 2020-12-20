@@ -8,6 +8,7 @@ import { PostService } from '../../services/post-service/post.service';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
   providers: [PostService],
+  encapsulation: ViewEncapsulation.None
 })
 export class HomePageComponent implements OnInit {
 
@@ -15,17 +16,13 @@ export class HomePageComponent implements OnInit {
   allPosts: Post[];
   filterText: string;
   ngOnInit(): void {
+    document.body.className = "bg";
+
     this.postService.getPosts().subscribe(data => {
       this.allPosts = data;
     });
   }
-  get isAuthenticated() {
-    return this.userService.loggedIn();
-  }
-  readMore(id: number) {
-    if (!this.isAuthenticated)
-      this.router.navigateByUrl('/post/' + id);
-    else
-      this.router.navigateByUrl("/login-register");
+  ngOnDestroy(): void {
+    document.body.className = "";
   }
 }

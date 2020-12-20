@@ -1,9 +1,9 @@
 var db = require("../database/index");
 
 likeService = {
-    likePost(postId, userId) {
+    likePost(postId, username) {
         return new Promise((resolve, reject) => {
-            db.connection.query(`INSERT INTO likes (post_id,user_id) VALUES (${postId},${userId}) `, (error, result, fields) => {
+            db.connection.query(`INSERT INTO likes (postId,username) VALUES (${postId},"${username}") `, (error, result, fields) => {
                 if (!error) {
                     this.likeCountIncrease(postId);
                     resolve(200);
@@ -13,12 +13,28 @@ likeService = {
 
         });
     },
-    removeLike(id) {
+    removeLike(postId, username) {
         return new Promise((resolve, reject) => {
-            db.connection.query(`DELETE FROM likes WHERE id=${id}`, (error, result, fields) => {
-                if (!error)
+            db.connection.query(`DELETE FROM likes WHERE postId=${postId} and username="${username}"`, (error, result, fields) => {
+                if (!error) {
+                    this.likeCountDecrease(postId);
                     resolve(200);
-                else
+                } else
+                    reject(error.sqlMessage);
+            });
+        });
+    },
+    getIsLiked(postId, username) {
+        return new Promise((resolve, reject) => {
+            console.log(username);
+            console.log(postId);
+            db.connection.query(`SELECT*FROM likes WHERE postId=${postId} and username="${username}"`, (error, result, fields) => {
+                console.log(result);
+                if (!error && result.length > 0)
+                    resolve(true);
+                else if (!error) {
+                    resolve(false);
+                } else
                     reject(error.sqlMessage);
             });
         });
@@ -26,6 +42,17 @@ likeService = {
     likeCountIncrease(postId) {
         return new Promise((resolve, reject) => {
             db.connection.query(`UPDATE posts set likeCount=likeCount+1 WHERE id=${postId}
+        `, (error, result, fields) => {
+                if (!error)
+                    resolve(result);
+                else
+                    reject(error.sqlMessage);
+            })
+        });
+    },
+    likeCountDecrease(postId) {
+        return new Promise((resolve, reject) => {
+            db.connection.query(`UPDATE posts set likeCount=likeCount-1 WHERE id=${postId}
         `, (error, result, fields) => {
                 if (!error)
                     resolve(result);

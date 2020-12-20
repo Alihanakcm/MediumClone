@@ -16,7 +16,7 @@
       <div class="blog-content">
         <p [innerHTML]="data.content.substring(0,500)"></p>
         <pre>...</pre>
-        <a class="btn btn-success" (click)="readMore(data.id)">Read
+        <a class="btn btn-success" routerLink="/post/{{data.id}}">Read
           more...</a>
       </div>
     </ul>

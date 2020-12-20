@@ -4,12 +4,13 @@ import { Post } from 'src/app/entities/post';
 import { User } from 'src/app/entities/user';
 import { PostService } from 'src/app/services/post-service/post.service';
 import { UserService } from 'src/app/services/user-service/user.service';
-
+import { CKEditor4 } from 'ckeditor4-angular'
 @Component({
   selector: 'app-new-post',
   templateUrl: './new-post.component.html',
   styleUrls: ['./new-post.component.css'],
   providers: [PostService],
+  encapsulation: ViewEncapsulation.None
 })
 export class NewPostComponent implements OnInit {
 
@@ -20,8 +21,12 @@ export class NewPostComponent implements OnInit {
   error: string;
   user: User;
   ngOnInit(): void {
+    document.body.className = "bg";
     this.createPostForm();
     this.userService.getCurrentUser().subscribe(data => { this.user = data });
+  }
+  ngOnDestroy(): void {
+    document.body.className = "";
   }
   createPostForm() {
     this.postForm = this.formBuilder.group({
