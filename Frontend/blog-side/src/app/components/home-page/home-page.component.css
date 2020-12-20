@@ -1,7 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300&display=swap');
+/* .bg {
+    background-image: url("/assets/home-page.jpg");
+    background-size: cover;
+  } */
+
 .blog {
     width: 100%;
     float: left;
-    margin: 30px 0;
+    background-image: linear-gradient(to right, #fad599,#faf399);
 }
 
 .blog ul {
@@ -25,12 +31,14 @@
 }
 
 .blog h3 {
+    font-family: 'Philosopher', sans-serif;
+    font-size: 35px;
     font-weight: 500;
     margin-bottom: 15px;
 }
 
 .blog .btn-success {
-    border-radius: 0;
+    border-radius: 8%;
     background: #3c8dbc;
     border: 2px solid #3c8dbc;
     color: #fff;
@@ -65,7 +73,10 @@ a {
     text-decoration: none;
     color: rgb(39, 37, 37)
 }
-
+.blog-content,p{
+    font-size:20px;
+    font-family: 'Philosopher', sans-serif;
+}
 /* Responsive start here  */
 
 @media (max-width:767px) {

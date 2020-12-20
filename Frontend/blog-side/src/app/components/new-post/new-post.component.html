@@ -10,8 +10,7 @@
             <input type="text" class="form-control" id="title" placeholder="Enter post's header here... "
                 formControlName="title">
         </div>
-        <!-- class'ı ckeditor olmak zorunda Id'si değiştirilebilir. -->
-        <ckeditor formControlName="content">
+        <ckeditor  formControlName="content">
             <textarea class="ckeditor" id="content" ></textarea>
         </ckeditor>
         <button type="submit" [disabled]="postForm.invalid" class="btn btn-primary mt-3">Add Post</button>

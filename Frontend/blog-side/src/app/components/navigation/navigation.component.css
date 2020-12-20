@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@700&family=Spectral:ital,wght@1,500&display=swap');
+.navbar-brand{
+    font-family: 'Playfair Display SC', serif;
+    font-size: 30px;
+}
+.nav-link {
+    font-family: 'Spectral', serif;
+    font-size: 20px;
+
+}

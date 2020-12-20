@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { Post } from 'src/app/entities/post';
 import { UserService } from 'src/app/services/user-service/user.service';
@@ -7,7 +7,7 @@ import { PostService } from '../../services/post-service/post.service';
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
-  providers: [PostService, UserService]
+  providers: [PostService],
 })
 export class HomePageComponent implements OnInit {
 

@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UserService } from '../../services/user-service/user.service';
 import { UserLogin } from '../../entities/userLogin';
 import { User } from '../../entities/user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login-register',
   templateUrl: './login-register.component.html',
   styleUrls: ['./login-register.component.css'],
-  providers: [UserService]
+  encapsulation: ViewEncapsulation.None,
+
 })
 export class LoginRegisterComponent implements OnInit {
 
@@ -43,8 +43,12 @@ export class LoginRegisterComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    document.body.className = "bg";
     this.createRegisterForm();
     this.createLoginForm();
+  }
+  ngOnDestroy(): void {
+    document.body.className = "";
   }
   register() {
     if (this.registerForm.valid) {

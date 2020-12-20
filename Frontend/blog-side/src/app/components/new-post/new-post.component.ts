@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Post } from 'src/app/entities/post';
 import { User } from 'src/app/entities/user';
@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user-service/user.service';
   selector: 'app-new-post',
   templateUrl: './new-post.component.html',
   styleUrls: ['./new-post.component.css'],
-  providers: [PostService, UserService]
+  providers: [PostService],
 })
 export class NewPostComponent implements OnInit {
 
