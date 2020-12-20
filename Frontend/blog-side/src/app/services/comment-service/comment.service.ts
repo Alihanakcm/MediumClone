@@ -17,6 +17,16 @@ export class CommentService {
     };
     return this.http.post<Response>(environment.url + "/comment?userId=" + userId + "&postId=" + postId, comment, httpOptions).pipe(catchError(this.handleError));
   }
+  getComments(postId: number): Observable<Comment[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'authorization': 'Bearer ' + localStorage.getItem(this.TOKEN_KEY)
+      })
+    };
+    return this.http.get<Comment[]>(environment.url + "/comments?postId=" + postId, httpOptions).pipe(catchError(this.handleError));
+
+  }
   handleError(err: HttpErrorResponse) {
     let errorMessage = '';
     if (err.error instanceof ErrorEvent) {
