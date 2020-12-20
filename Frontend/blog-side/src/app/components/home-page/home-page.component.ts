@@ -17,7 +17,6 @@ export class HomePageComponent implements OnInit {
   filterText: string;
   ngOnInit(): void {
     document.body.className = "bg";
-
     this.postService.getPosts().subscribe(data => {
       this.allPosts = data;
     });

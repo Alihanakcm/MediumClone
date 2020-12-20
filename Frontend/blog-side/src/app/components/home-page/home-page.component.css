@@ -5,8 +5,6 @@
   } */
 
 .bg {
-    width: 100%;
-    float: left;
     background-image: linear-gradient(to right, #fad599,#faf399);
 }
 
@@ -74,7 +72,7 @@ a {
     color: rgb(39, 37, 37)
 }
 .blog-content,p{
-    font-size:20px;
+    font-size:15px;
     font-family: 'Philosopher', sans-serif;
 }
 /* Responsive start here  */
