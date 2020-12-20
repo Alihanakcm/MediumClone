@@ -13,6 +13,7 @@ export class HomePageComponent implements OnInit {
 
   constructor(private postService: PostService, private userService: UserService, private router: Router) { }
   allPosts: Post[];
+  filterText: string;
   ngOnInit(): void {
     this.postService.getPosts().subscribe(data => {
       this.allPosts = data;

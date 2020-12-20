@@ -14,6 +14,7 @@ import { NewPostComponent } from './components/new-post/new-post.component'
 import { CKEditorModule } from 'ckeditor4-angular';
 import { ProfileComponent } from './components/profile/profile.component';
 import { UserService } from './services/user-service/user.service';
+import { PostFilterPipe } from './components/home-page/post-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { UserService } from './services/user-service/user.service';
     ContentComponent,
     LoginRegisterComponent,
     NewPostComponent,
-    ProfileComponent
+    ProfileComponent,
+    PostFilterPipe
   ],
   imports: [
     BrowserModule,

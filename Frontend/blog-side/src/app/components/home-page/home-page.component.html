@@ -1,7 +1,10 @@
 <div class="blog">
   <br>
   <div class="container">
-    <ul *ngFor="let data of allPosts">
+    <input [(ngModel)]="filterText" type="text" id="search" class="form-control" placeholder="Search..." required
+      autofocus>
+    <br>
+    <ul *ngFor="let data of allPosts | postFilter:filterText">
       <div class="blog-image">
         <a routerLink="/post/{{data.id}}"><img src="assets/blog.jpeg" height=200px width=200px></a>
       </div>
