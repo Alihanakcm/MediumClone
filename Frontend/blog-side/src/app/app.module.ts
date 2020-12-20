@@ -15,6 +15,7 @@ import { CKEditorModule } from 'ckeditor4-angular';
 import { ProfileComponent } from './components/profile/profile.component';
 import { UserService } from './services/user-service/user.service';
 import { PostFilterPipe } from './components/home-page/post-filter.pipe';
+import { LoginGuard } from './components/login-register/login.guard';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { PostFilterPipe } from './components/home-page/post-filter.pipe';
     ReactiveFormsModule,
     CKEditorModule
   ],
-  providers: [UserService],
+  providers: [UserService,LoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

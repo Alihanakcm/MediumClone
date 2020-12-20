@@ -25,22 +25,16 @@ export class ContentComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if (this.isAuthenticated)
-      this.router.navigateByUrl("/login-register");
     this.userService.getCurrentUser().subscribe(data => { this.user = data[0] });
     this.createCommentForm();
     this.activatedRoute.params.subscribe(params => {
       this.postService.getsinglePost(params["postId"]).subscribe(data => {
         this.singlePost = data;
-        
       });
       this.commentService.getComments(params["postId"]).subscribe(data => {
         this.comments = data
       });
     });
-  }
-  get isAuthenticated() {
-    return this.userService.loggedIn();
   }
   createCommentForm() {
     this.commentForm = this.formBuilder.group({
