@@ -26,10 +26,7 @@ likeService = {
     },
     getIsLiked(postId, username) {
         return new Promise((resolve, reject) => {
-            console.log(username);
-            console.log(postId);
             db.connection.query(`SELECT*FROM likes WHERE postId=${postId} and username="${username}"`, (error, result, fields) => {
-                console.log(result);
                 if (!error && result.length > 0)
                     resolve(true);
                 else if (!error) {
