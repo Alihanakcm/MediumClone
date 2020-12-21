@@ -1,12 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300&display=swap');
-/* .bg {
-    background-image: url("/assets/home-page.jpg");
-    background-size: cover;
-  } */
-
-.bg {
-    background-image: linear-gradient(to right, #fad599,#faf399);
-}
 
 .blog ul {
     width: 100%;

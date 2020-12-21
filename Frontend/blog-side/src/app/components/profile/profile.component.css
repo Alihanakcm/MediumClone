@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Roboto+Slab:wght@600&display=swap');.card {
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Roboto+Slab:wght@600&display=swap');
+
+.card {
   border-radius: 10%;
 }
 
@@ -7,27 +9,25 @@
   background: rgb(250, 207, 179);
 }
 
-
 img {
   height: 200px;
   width: 200px;
   margin-top: 10px;
 }
 
-.user-details h5,p,span {
+.user-details h5,
+p,
+span {
   margin: 25px 0 5px 0;
-  font-size:20px;
+  font-size: 20px;
   font-family: 'Roboto Slab', serif;
 }
-.user-details span{
+
+.user-details span {
   font-family: 'Courgette', cursive;
 }
 
-/*bg*/
-
-.bg {
-  /* The image used */
-  background-image: url("/assets/profile.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+.bg-image {
+  width: 15%;
+  height: 100px;
 }

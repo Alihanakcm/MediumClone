@@ -28,7 +28,6 @@ export class ContentComponent implements OnInit {
   likeCount: number;
 
   ngOnInit(): void {
-        document.body.className = "bg";
     this.userService.getCurrentUser().subscribe(data => {
       this.user = data[0];
     });
@@ -47,9 +46,7 @@ export class ContentComponent implements OnInit {
       });
     });
   }
-  ngOnDestroy(): void {
-    document.body.className = "";
-  }
+ 
   createCommentForm() {
     this.commentForm = this.formBuilder.group({
       comment: ["", Validators.required],

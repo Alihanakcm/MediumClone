@@ -10,8 +10,6 @@ import { JwtHelperService } from "@auth0/angular-jwt";
   selector: 'app-login-register',
   templateUrl: './login-register.component.html',
   styleUrls: ['./login-register.component.css'],
-  encapsulation: ViewEncapsulation.None,
-
 })
 export class LoginRegisterComponent implements OnInit {
 
@@ -43,12 +41,8 @@ export class LoginRegisterComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    document.body.className = "bg";
     this.createRegisterForm();
     this.createLoginForm();
-  }
-  ngOnDestroy(): void {
-    document.body.className = "";
   }
   register() {
     if (this.registerForm.valid) {
@@ -65,8 +59,6 @@ export class LoginRegisterComponent implements OnInit {
     if (this.loginForm.valid) {
       this.userLogin = Object.assign({}, this.loginForm.value);
       this.userService.login(this.userLogin).subscribe(res => {
-        console.log(res["res"]);
-        
         if (res["res"]["token"] != undefined) {
           this.userService.saveToken(res["res"]["token"]);
           this.userService.userToken = res["res"]["token"];

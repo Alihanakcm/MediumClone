@@ -21,12 +21,8 @@ export class NewPostComponent implements OnInit {
   error: string;
   user: User;
   ngOnInit(): void {
-    document.body.className = "bg";
     this.createPostForm();
     this.userService.getCurrentUser().subscribe(data => { this.user = data });
-  }
-  ngOnDestroy(): void {
-    document.body.className = "";
   }
   createPostForm() {
     this.postForm = this.formBuilder.group({
